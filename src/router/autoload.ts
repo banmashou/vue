@@ -1,5 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
 
+// 遍历 layouts 目录下的所有 .vue 文件
 const layouts = import.meta.glob('../layouts/*.vue')
 
 console.log('layouts', layouts)
@@ -11,8 +12,14 @@ Object.entries(layouts).forEach(([file, module]) => {
 })
 
 function getRouteByModule(file: string, module: { [key: string]: any }) {
-    console.log('file', file)
-    console.log('module', module)
+    const name = file.replace(/.+layouts\/|\.vue/gi, '')
+    const route = {
+        name,
+        path: `/${name}`,
+        component: module.default,
+    } as RouteRecordRaw
+
+    console.log('route', route)
 }
 
 const layoutRoutes = [] as RouteRecordRaw[]
