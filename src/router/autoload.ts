@@ -25,6 +25,7 @@ function getChildrenRoutes(layoutRoute: RouteRecordRaw) {
     Object.entries(views).forEach(([file, module]) => {
         if (file.includes(`../views/${layoutRoute.name as string}`)) {
             const route = getRouteByModule(file, module)
+            console.log('route', route)
             routes.push(route)
         }
     })
@@ -32,11 +33,11 @@ function getChildrenRoutes(layoutRoute: RouteRecordRaw) {
 }
 
 function getRouteByModule(file: string, module: { [key: string]: any }) {
-    const name = file.replace(/.+layouts\/|\.vue/gi, '')
+    const name = file.replace(/.+layouts\/|.+views\/|\.vue/gi, '')
     const route = {
-        name,
+        name: name.replace('/', '.'),
         path: `/${name}`,
-        component: module.default,
+        component: module,
     } as RouteRecordRaw
 
     return route
