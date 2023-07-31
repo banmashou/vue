@@ -21,7 +21,14 @@ function getRoutes() {
  * @param {RouteRecordRaw} layoutRoute
  */
 function getChildrenRoutes(layoutRoute: RouteRecordRaw) {
-    console.log(layoutRoute)
+    const routes = [] as RouteRecordRaw[]
+    Object.entries(views).forEach(([file, module]) => {
+        if (file.includes(`../views/${layoutRoute.name as string}`)) {
+            const route = getRouteByModule(file, module)
+            routes.push(route)
+        }
+    })
+    return routes
 }
 
 function getRouteByModule(file: string, module: { [key: string]: any }) {
