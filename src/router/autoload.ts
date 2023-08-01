@@ -25,7 +25,6 @@ function getChildrenRoutes(layoutRoute: RouteRecordRaw) {
     Object.entries(views).forEach(([file, module]) => {
         if (file.includes(`../views/${layoutRoute.name as string}`)) {
             const route = getRouteByModule(file, module)
-            console.log('route', route)
             routes.push(route)
         }
     })
