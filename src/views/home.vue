@@ -1,5 +1,8 @@
 <script setup lang="ts"></script>
 
-<template>主页 home.vue</template>
+<template>
+	<div>主页 home.vue</div>
+</template>
 
-<style lang="scss"></style>
+<style lang="scss">
+</style>
