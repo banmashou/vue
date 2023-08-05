@@ -1,4 +1,5 @@
 <script setup lang="ts">
+console.log(typeof import.meta.env.VITE_ROUTE_AUTOLOAD);
 </script>
 
 <template>
