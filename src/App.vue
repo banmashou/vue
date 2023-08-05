@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import helper from './types/helper'
-console.log(typeof helper.env.VITE_SOME_KEY);
+import { env } from './types/helper'
+console.log(typeof env.VITE_SOME_KEY);
 console.log(typeof import.meta.env.VITE_SOME_KEY);
 </script>
 
