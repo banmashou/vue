@@ -8,6 +8,8 @@
 	},
 	"include": [
 		"vite.config.ts",
-		"vite/**/*.ts"
+		"vite/**/*.ts",
+		"mock/**/*.ts",
+		"types/**/*.d.ts"
 	]
 }
