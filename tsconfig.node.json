@@ -10,6 +10,6 @@
 		"vite.config.ts",
 		"vite/**/*.ts",
 		"mock/**/*.ts",
-		"types/**/*.d.ts"
+		"types/**/*.d.ts",
 	]
 }

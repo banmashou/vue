@@ -1,5 +1,7 @@
 <script setup lang="ts">
-console.log(typeof import.meta.env.VITE_ROUTE_AUTOLOAD);
+import helper from './types/helper'
+console.log(typeof helper.env.VITE_SOME_KEY);
+console.log(typeof import.meta.env.VITE_SOME_KEY);
 </script>
 
 <template>
