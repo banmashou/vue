@@ -1,5 +1,5 @@
 /**
- * @description: 定义接口返回类型
+ * @description: 定义接口返回类型声明
  *
  * @interface RespinseResult
  * @template T

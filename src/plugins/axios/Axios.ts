@@ -1,11 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
 /**
- * @description axios实例
+ * @description axios封装
  *
  * @class Axios
  */
-class Axios {
+export default class Axios {
     private instance
     constructor(config: AxiosRequestConfig) {
         this.instance = axios.create(config)
@@ -13,7 +13,16 @@ class Axios {
         this.interceptors()
     }
 
-    public request() {}
+    public request<T, D = RespinseResult<T>>(config: AxiosRequestConfig) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const response = await this.instance.request<D>(config)
+                resolve(response.data)
+            } catch (error) {
+                reject(error)
+            }
+        }) as Promise<D>
+    }
 
     private interceptors() {
         this.interceptorsRequest()
@@ -24,11 +33,9 @@ class Axios {
     private interceptorsRequest() {
         this.instance.interceptors.request.use(
             (config) => {
-                // 在发送请求之前做些什么
                 return config
             },
             (error) => {
-                // 对请求错误做些什么
                 return Promise.reject(error)
             },
         )
