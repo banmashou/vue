@@ -1,5 +1,5 @@
 {
-  "name": "learnovation-web",
+  "name": "vue",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.4.0",
     "lodash": "^4.17.21",
     "mockjs": "^1.1.0",
     "vue": "^3.3.4",
