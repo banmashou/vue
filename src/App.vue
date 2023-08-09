@@ -1,7 +1,4 @@
-<script setup lang="ts">
-import { defineRules } from '@/plugins/validate'
-defineRules()
-</script>
+<script setup lang="ts"></script>
 
 <template>
     <router-view />
