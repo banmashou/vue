@@ -2,42 +2,62 @@
 import v from '@/plugins/validate'
 
 const { Form, Field, ErrorMessage } = v
+
+// const schema = v.yup.object({
+//     account: v.yup.string().required().email(),
+//     password: v.yup.string().required().min(3),
+// })
+
+const schema = {
+    account: { required: true, email: true },
+    password: { required: true, min: 3 },
+}
+const onSubmit = (values) => {
+    console.log('values', values)
+}
 </script>
 
 <template>
-    <Form class>
-        <div class="w-[720px] bg-white md:grid grid-cols-2 rounded-md shadow-md overflow-hidden">
-            <div class="p-6">
-                <h2 class="text-center text-gray-700 text-lg mt-3">会员登录</h2>
-                <div class="mt-8">
-                    <Field
-                        name="account"
-                        placeholder="请输入手机号或邮箱"
-                        :rules="{ required: true, email: true }"
-                        class="bm-input"
-                        :validate-on-input="true"
-                        label="账号"
-                    />
-                    <ErrorMessage name="account" as="div" class="bm-error" />
-                    <Field
-                        name="password"
-                        placeholder="请输入登录密码"
-                        :rules="{ required: true, min: 3 }"
-                        class="bm-input mt-3"
-                        :validate-on-input="true"
-                        label="密码"
-                    />
-                    <ErrorMessage name="password" as="div" class="bm-error" />
-                    <!-- <bmInput v-model="form.account" placeholder="请输入手机号或邮箱" />
+    <Form class @submit="onSubmit" :validation-schema="schema">
+        <div
+            class="w-[720px] translate-y-32 md:translate-y-0 bg-white md:grid grid-cols-2 rounded-md shadow-md overflow-hidden"
+        >
+            <div class="p-6 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-center text-gray-700 text-lg mt-3">会员登录</h2>
+                    <div class="mt-8">
+                        <Field
+                            name="account"
+                            placeholder="请输入手机号或邮箱"
+                            class="bm-input"
+                            :validate-on-input="true"
+                            label="账号"
+                        />
+                        <ErrorMessage name="account" as="div" class="bm-error" />
+                        <Field
+                            type="password"
+                            name="password"
+                            placeholder="请输入登录密码"
+                            class="bm-input mt-3"
+                            :validate-on-input="true"
+                            label="密码"
+                        />
+                        <ErrorMessage name="password" as="div" class="bm-error" />
+                        <!-- <bmInput v-model="form.account" placeholder="请输入手机号或邮箱" />
                     <bmInput v-model="form.password" placeholder="请输入登录密码" class="mt-3" /> -->
+                    </div>
+                    <bmButton class="mt-5" />
                 </div>
-                <bmButton class="mt-5" />
+
+                <div class="flex justify-center mt-3">
+                    <i class="fa-brands fa-weixin bg-green-600 text-white rounded-full p-1 cursor-pointer"></i>
+                </div>
                 <div class="flex gap-2 justify-center mt-5">
                     <bmLink />
                 </div>
             </div>
-            <div class="hidden md:block">
-                <img src="/images/login.jpg" class="h-80 w-full object-cover" />
+            <div class="hidden md:block relative">
+                <img src="/images/login.jpg" class="absolute h-full w-full object-cover" />
             </div>
         </div>
     </Form>
