@@ -5,10 +5,21 @@ interface User {
     age: number
     avatar: string
 }
+
+interface LoginInterface {
+    token: string
+}
 class userApi {
     info() {
         return http.request<User>({
             url: `info`,
+        })
+    }
+    login(data: any) {
+        return http.request<LoginInterface>({
+            url: `login`,
+            method: 'POST',
+            data,
         })
     }
 }

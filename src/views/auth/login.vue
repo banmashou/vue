@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import userApi from '@/apis/userApi'
 import v from '@/plugins/validate'
 
 const { Form, Field, ErrorMessage } = v
@@ -12,8 +13,11 @@ const schema = {
     account: { required: true, email: true },
     password: { required: true, min: 3 },
 }
-const onSubmit = (values) => {
-    console.log('values', values)
+const onSubmit = async (values: any) => {
+    const {
+        data: { token },
+    } = await userApi.login(values)
+    console.log(token)
 }
 </script>
 
@@ -29,6 +33,7 @@ const onSubmit = (values) => {
                         <Field
                             name="account"
                             placeholder="请输入手机号或邮箱"
+                            value="banmashou@sina.com"
                             class="bm-input"
                             :validate-on-input="true"
                             label="账号"
@@ -37,6 +42,7 @@ const onSubmit = (values) => {
                         <Field
                             type="password"
                             name="password"
+                            value="admin888"
                             placeholder="请输入登录密码"
                             class="bm-input mt-3"
                             :validate-on-input="true"
