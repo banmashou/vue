@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import userApi from '@/apis/userApi'
 import v from '@/plugins/validate'
+import { store } from '@/utils'
 
 const { Form, Field, ErrorMessage } = v
 
@@ -17,12 +18,15 @@ const onSubmit = async (values: any) => {
     const {
         data: { token },
     } = await userApi.login(values)
-    console.log(token)
+    store.set('token', {
+        expire: 100,
+        token,
+    })
 }
 </script>
 
 <template>
-    <Form class @submit="onSubmit" :validation-schema="schema">
+    <Form @submit="onSubmit" :validation-schema="schema" class="bg-gray-700">
         <div
             class="w-[720px] translate-y-32 md:translate-y-0 bg-white md:grid grid-cols-2 rounded-md shadow-md overflow-hidden"
         >
