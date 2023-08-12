@@ -2,6 +2,8 @@
 import userApi from '@/apis/userApi'
 import v from '@/plugins/validate'
 import { store } from '@/utils'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const { Form, Field, ErrorMessage } = v
 
@@ -19,9 +21,15 @@ const onSubmit = async (values: any) => {
         data: { token },
     } = await userApi.login(values)
     store.set('token', {
-        expire: 100,
+        expire: 60,
         token,
     })
+    router.push({ name: 'home' })
+}
+</script>
+<script lang="ts">
+export default {
+    route: { name: 'login' },
 }
 </script>
 

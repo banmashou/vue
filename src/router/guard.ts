@@ -1,3 +1,4 @@
+import { store } from '@/utils'
 import { RouteLocationNormalized, Router } from 'vue-router'
 
 /**
@@ -7,10 +8,11 @@ import { RouteLocationNormalized, Router } from 'vue-router'
  */
 class Guard {
     constructor(private router: Router) {}
+
     public run() {
         this.router.beforeEach((to, from) => {
-            //对登录有路由进行验证
-            if (this.isLogin(to) === false) return { name: 'login' }
+            let token = store.get('token')?.token
+            if (this.isLogin(to, token) === false) return { name: 'login' }
         })
     }
 
@@ -20,8 +22,8 @@ class Guard {
      * @private
      * @memberof Guard
      */
-    private isLogin(route: RouteLocationNormalized) {
-        return false
+    private isLogin(route: RouteLocationNormalized, token: any) {
+        return Boolean(!route.meta.auth || (route.meta.auth && token))
     }
 }
 
