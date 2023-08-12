@@ -7,15 +7,11 @@ const router = useRouter()
 
 const { Form, Field, ErrorMessage } = v
 
-// const schema = v.yup.object({
-//     account: v.yup.string().required().email(),
-//     password: v.yup.string().required().min(3),
-// })
-
 const schema = {
     account: { required: true, email: true },
     password: { required: true, min: 3 },
 }
+
 const onSubmit = async (values: any) => {
     const {
         data: { token },
@@ -61,10 +57,8 @@ export default {
                             label="密码"
                         />
                         <ErrorMessage name="password" as="div" class="bm-error" />
-                        <!-- <bmInput v-model="form.account" placeholder="请输入手机号或邮箱" />
-                    <bmInput v-model="form.password" placeholder="请输入登录密码" class="mt-3" /> -->
                     </div>
-                    <bmButton class="mt-5" />
+                    <bmButton class="w-full mt-5" />
                 </div>
 
                 <div class="flex justify-center mt-3">

@@ -8,7 +8,5 @@
 	},
 	"include": [
 		"vite.config.ts",
-		"vite/**/*.ts",
-		"mock/**/*.ts",
 	]
 }
