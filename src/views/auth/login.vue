@@ -25,7 +25,7 @@ const onSubmit = async (values: any) => {
 </script>
 <script lang="ts">
 export default {
-    route: { name: 'login' },
+    route: { name: 'login', meta: { guest: true } },
 }
 </script>
 

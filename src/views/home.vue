@@ -2,11 +2,12 @@
 
 <template>
     <div class="h-screen w-screen bg-gray-700 flex flex-col justify-center items-center">
-        <img src="/images/bm.jpg" class="w-52 h-52 object-cover rounded-full border-8 border-white mb-5" />
-        <router-link :to="{ name: 'admin' }" class="bm-button">后台管理</router-link>
-        <div class="text-gray-200 text-sm font-mono tracking-[5px] border-spacing-1 drop-shadow-md mt-3">
-            欢迎使用斑马兽前端脚手架
+        <img src="/images/bm.jpg" class="w-40 h-40 object-cover rounded-full border-8 border-white mb-5" />
+        <div>
+            <router-link :to="{ name: 'admin' }" class="bm-button">后台管理</router-link>
+            <router-link :to="{ name: 'login' }" class="bm-button ml-3 bm-danger">用户登录</router-link>
         </div>
+        <div class="text-gray-300 text-xs font-mono border-spacing-1 drop-shadow-md mt-6">欢迎使用斑马兽前端脚手架</div>
     </div>
 </template>
 
