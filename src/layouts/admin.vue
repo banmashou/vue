@@ -10,17 +10,18 @@
 
             <!-- 菜单 -->
             <div class="left-container">
-                <dl class="text-gray-300 text-sm">
-                    <dt class="text-md mt-6">
-                        <i class="fas fa-file-excel mr-2"></i>
-                        <span class="text-md">错误页面</span>
+                <dl>
+                    <dt>
+                        <section>
+                            <i class="fab fa-behance-square"></i>
+                            <span class="text-md">错误页面</span>
+                        </section>
+                        <section>
+                            <i class="fas fa-angle-down"></i>
+                        </section>
                     </dt>
-                    <dd
-                        class="py-3 pl-4 my-2 bg-violet-700 text-white rounded-md cursor-pointer hover:bg-violet-500 duration-300"
-                    >
-                        404错误
-                    </dd>
-                    <dd class="py-3 pl-4 my-2 hover:bg-violet-500 duration-300 cursor-pointer rounded-md">500错误</dd>
+                    <dd class="active">404错误</dd>
+                    <dd class="">500错误</dd>
                 </dl>
             </div>
         </div>
@@ -30,7 +31,30 @@
     </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.admin {
+    .left-container {
+        dl {
+            @apply text-gray-300 text-sm;
+            dt {
+                @apply text-sm mt-6 flex justify-between cursor-pointer items-center;
+                section {
+                    @apply flex items-center;
+                    i {
+                        @apply mr-2 text-sm;
+                    }
+                }
+            }
+            dd {
+                @apply py-3 pl-4 my-2 text-white rounded-md cursor-pointer duration-300;
+                &.active {
+                    @apply bg-violet-700 hover:bg-violet-500;
+                }
+            }
+        }
+    }
+}
+</style>
 
 <script lang="ts">
 export default {
