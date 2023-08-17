@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import MenuComponet from './admin/menu.vue'
+import Navber from './admin/navbar.vue'
 </script>
 
 <template>
     <div class="admin h-screen w-screen flex">
         <MenuComponet />
         <div class="content flex-1 bg-gray-200">
+            <Navber />
             <router-view />
         </div>
     </div>
