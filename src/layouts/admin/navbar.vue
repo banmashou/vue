@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-    <div class="bg-white p-4 flex justify-between items-center">
+    <div class="bg-white p-3 px-5 flex justify-between items-center">
         <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/' }">编辑器</el-breadcrumb-item>
             <el-breadcrumb-item>富文本编辑器</el-breadcrumb-item>

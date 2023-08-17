@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import MenuComponet from './admin/menu.vue'
 import Navber from './admin/navbar.vue'
+import HistoryLink from './admin/historyLink.vue'
 </script>
 
 <template>
     <div class="admin h-screen w-screen flex">
         <MenuComponet />
-        <div class="content flex-1 bg-gray-200">
+        <div class="content flex-1 bg-gray-100">
             <Navber />
-            <router-view />
+            <HistoryLink />
+            <div class="m-3 p-5 bg-white">
+                <router-view />
+            </div>
         </div>
     </div>
 </template>
