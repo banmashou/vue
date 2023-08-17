@@ -1,6 +1,7 @@
 import { App } from 'vue'
 import { setupTailwindcss } from './tailwindcss'
 import _ from 'lodash'
+import setupElementPlus from './elementui'
 
 /**
  * @module 插件工具
@@ -10,6 +11,7 @@ import _ from 'lodash'
 export function setupPlugins(app: App) {
     autoRegisterComponent(app)
     setupTailwindcss()
+    setupElementPlus(app)
 }
 
 /**
