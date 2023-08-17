@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 interface IMenuItem {
     title: string
     icon?: string
@@ -9,19 +11,33 @@ interface IMenu extends IMenuItem {
     children?: IMenuItem[]
 }
 
-const menus = [
+const menus = ref<IMenu[]>([
     {
         title: '错误页面',
-        icon: 'fas fa-angle-down',
+        icon: 'fab fa-bimobject',
         active: true,
         children: [{ title: '404错误', active: true }, { title: '500错误' }],
     },
     {
         title: '编辑器',
-        icon: 'fas fa-angle-down',
+        icon: 'fab fa-app-store-ios',
         children: [{ title: 'markdown编辑器' }, { title: '富文本编辑器' }],
     },
-] as IMenu[]
+])
+
+// 收起未展开的菜单
+const resetMenus = () => {
+    menus.value.forEach((pmenu) => {
+        pmenu.active = false
+        pmenu.children?.forEach((m) => (m.active = false))
+    })
+}
+
+// 展开菜单
+const handle = (pmenu: IMenuItem, cmenu?: IMenuItem) => {
+    resetMenus()
+    pmenu.active = true
+}
 </script>
 
 <template>
@@ -35,9 +51,9 @@ const menus = [
             <!-- 菜单 -->
             <div class="left-container">
                 <dl v-for="(menu, index) of menus" :key="index">
-                    <dt>
+                    <dt @click="handle(menu)">
                         <section>
-                            <i class="fab fa-behance-square"></i>
+                            <i :class="menu.icon"></i>
                             <span class="text-md">{{ menu.title }}</span>
                         </section>
                         <section>
@@ -76,9 +92,9 @@ const menus = [
                 }
             }
             dd {
-                @apply py-3 pl-4 my-2 text-white rounded-md cursor-pointer duration-300;
+                @apply py-3 pl-4 my-2 text-white rounded-md cursor-pointer duration-300 hover:bg-violet-500;
                 &.active {
-                    @apply bg-violet-700 hover:bg-violet-500;
+                    @apply bg-violet-700;
                 }
             }
         }
