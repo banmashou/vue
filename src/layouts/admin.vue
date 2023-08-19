@@ -10,7 +10,7 @@ import HistoryLink from './admin/historyLink.vue'
         <div class="content flex-1 bg-gray-100">
             <Navber />
             <HistoryLink />
-            <div class="m-3 p-5">
+            <div class="m-5">
                 <router-view />
             </div>
         </div>
