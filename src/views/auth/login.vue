@@ -31,9 +31,7 @@ export default {
 
 <template>
     <Form @submit="onSubmit" :validation-schema="schema" class="bg-gray-700">
-        <div
-            class="w-[720px] translate-y-32 md:translate-y-0 bg-white md:grid grid-cols-2 rounded-md shadow-md overflow-hidden"
-        >
+        <div class="w-[720px] bg-white md:grid grid-cols-2 rounded-md shadow-md overflow-hidden">
             <div class="p-6 flex flex-col justify-between">
                 <div>
                     <h2 class="text-center text-gray-700 text-lg mt-3">会员登录</h2>
