@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
+import { echarts_aHistogram, echarts_thePieChart } from './echarts'
 
 interface ICard {
     title: string
@@ -44,10 +45,15 @@ const cards = ref<ICard[]>([
         totalTitle: '总评论',
     },
 ])
+
+nextTick(() => {
+    echarts.init(document.getElementById('echarts_aHistogram')).setOption(echarts_aHistogram)
+    echarts.init(document.getElementById('echarts_thePieChart')).setOption(echarts_thePieChart)
+})
 </script>
 
 <template>
-    <div class="grid grid-flow-col gap-3">
+    <div class="grid grid-flow-col gap-3 bg-gray-100">
         <el-card
             shadow="hover"
             :body-style="{ padding: '20px' }"
@@ -71,6 +77,11 @@ const cards = ref<ICard[]>([
                 <span class>{{ card.total }}</span>
             </section>
         </el-card>
+    </div>
+
+    <div class="bg-white p-3 mt-5 grid grid-flow-col gap-3">
+        <div id="echarts_aHistogram" style="height: 500px"></div>
+        <div id="echarts_thePieChart" style="height: 500px"></div>
     </div>
 </template>
 
