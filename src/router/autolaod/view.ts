@@ -1,5 +1,4 @@
 import { RouteRecordRaw } from 'vue-router'
-import { env } from '@/utils'
 
 // 遍历 layouts 目录下的所有 .vue 文件
 const layouts: Record<string, any> = import.meta.glob('../layouts/*.vue', { eager: true })
@@ -54,6 +53,4 @@ function getRouteByModule(file: string, module: { [key: string]: any }) {
     return Object.assign(route, module.default?.route)
 }
 
-const routes = env.VITE_ROUTER_AUTOLOAD ? getRoutes() : ([] as RouteRecordRaw[])
-
-export default routes
+export default getRoutes

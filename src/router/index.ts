@@ -1,7 +1,7 @@
 import { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from './routes'
-import layoutRoutes from './autoload'
+import layoutRoutes from './autolaod/view'
 import guard from './guard'
 
 const router = createRouter({
