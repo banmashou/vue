@@ -53,7 +53,7 @@ nextTick(() => {
 </script>
 
 <template>
-    <div class="grid md:grid-flow-col gap-3 bg-gray-100">
+    <div class="grid md:grid-cols-4 gap-3 bg-gray-100">
         <el-card
             shadow="hover"
             :body-style="{ padding: '20px' }"
@@ -79,9 +79,20 @@ nextTick(() => {
         </el-card>
     </div>
 
-    <div class="bg-white p-3 mt-5 grid md:grid-flow-col gap-3">
-        <div id="echarts_aHistogram" style="height: 500px" class="w-full md:w-[600px]"></div>
-        <div id="echarts_thePieChart" style="height: 500px" class="w-full md:w-[600px]"></div>
+    <div class="p-3 mt-5 grid md:grid-cols-2 gap-3">
+        <el-card shadow="always" :body-style="{ padding: '20px' }">
+            <template #header>
+                <div>用户统计</div>
+            </template>
+            <div id="echarts_aHistogram" class="h-72 w-full"></div>
+        </el-card>
+
+        <el-card shadow="always" :body-style="{ padding: '20px' }">
+            <template #header>
+                <div>销售额</div>
+            </template>
+            <div id="echarts_thePieChart" s class="h-72 w-full"></div>
+        </el-card>
     </div>
 </template>
 
