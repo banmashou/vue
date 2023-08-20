@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { router } from '@/store/router'
+
+const routerStore = router()
+
+console.log(routerStore.get)
 
 interface IMenuItem {
     title: string

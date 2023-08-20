@@ -64,7 +64,7 @@ nextTick(() => {
             <template #header>
                 <div class="flex justify-between items-center">
                     {{ card.title }}
-                    <el-tag type="danger" size="mini" effect="dark">月</el-tag>
+                    <el-tag type="danger" size="small" effect="dark">月</el-tag>
                 </div>
             </template>
 
