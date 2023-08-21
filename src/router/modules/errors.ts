@@ -15,7 +15,6 @@ export default {
             name: 'error.500',
             path: '500',
             component: () => import('@/views/errors/500.vue'),
-            meta: { title: '500页面', icon: 'fas fa-baseball-ball', show: true },
         },
     ],
 } as RouteRecordRaw
