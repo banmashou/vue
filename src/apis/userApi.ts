@@ -1,6 +1,6 @@
 import { http } from '@/plugins/axios'
 
-interface User {
+export interface User {
     name: string
     age: number
     avatar: string
