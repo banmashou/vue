@@ -14,5 +14,7 @@ declare module 'vue-router' {
         icon?: string
         // 菜单是否被选中
         isClick?: boolean
+        // 访问权限
+        permissions?: string[]
     }
 }

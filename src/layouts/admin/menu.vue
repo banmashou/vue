@@ -1,32 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { router } from '@/store/router'
 import { RouteRecordNormalized } from 'vue-router'
 import { RouteRecordRaw } from 'vue-router'
-
-interface IMenuItem {
-    title: string
-    icon?: string
-    active?: boolean
-}
-
-interface IMenu extends IMenuItem {
-    children?: IMenuItem[]
-}
-
-// const menus = ref<IMenu[]>([
-//     {
-//         title: '错误页面',
-//         icon: 'fab fa-bimobject',
-//         active: true,
-//         children: [{ title: '404错误', active: true }, { title: '500错误' }],
-//     },
-//     {
-//         title: '编辑器',
-//         icon: 'fab fa-app-store-ios',
-//         children: [{ title: 'markdown编辑器' }, { title: '富文本编辑器' }],
-//     },
-// ])
 
 const routerStore = router()
 
