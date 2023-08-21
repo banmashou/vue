@@ -47,7 +47,7 @@ const handle = (pRoute: RouteRecordNormalized, cRoute?: RouteRecordRaw) => {
     reset()
     pRoute.meta.isClick = true
     if (cRoute && cRoute.meta) {
-        cRoute.meta.isClick = false
+        cRoute.meta.isClick = true
     }
 }
 </script>
@@ -72,10 +72,11 @@ const handle = (pRoute: RouteRecordNormalized, cRoute?: RouteRecordRaw) => {
                     </section>
                 </dt>
                 <dd
-                    v-show="route.meta.active"
+                    v-show="route.meta.isClick"
                     :class="{ active: childRoute.meta?.isClick }"
                     v-for="(childRoute, key) of route.children"
                     :key="key"
+                    @click="handle(route, childRoute)"
                 >
                     {{ childRoute.meta?.title }}
                 </dd>
