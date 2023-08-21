@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { router } from '@/store/router'
+import { useRouter } from 'vue-router'
 import { RouteRecordNormalized } from 'vue-router'
 import { RouteRecordRaw } from 'vue-router'
+
+const routeService = useRouter()
 
 const routerStore = router()
 
@@ -23,6 +26,7 @@ const handle = (pRoute: RouteRecordNormalized, cRoute?: RouteRecordRaw) => {
     pRoute.meta.isClick = true
     if (cRoute && cRoute.meta) {
         cRoute.meta.isClick = true
+        routeService.push(cRoute)
     }
 }
 </script>

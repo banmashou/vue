@@ -2,7 +2,7 @@ import { RouteRecordRaw } from 'vue-router'
 export default {
     name: 'editor',
     path: '/editor',
-    component: () => import('@/layouts/editor.vue'),
+    component: () => import('@/layouts/admin.vue'),
     meta: { title: '编辑器', icon: 'fas fa-baseball-ball', show: true },
     children: [
         { name: 'base', path: 'base', component: () => import('@/views/editor/base.vue') },
