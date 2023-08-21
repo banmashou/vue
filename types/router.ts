@@ -11,6 +11,8 @@ declare module 'vue-router' {
         // 菜单标题
         title?: string
         // 菜单图标
-        icon: string
+        icon?: string
+        // 菜单是否被选中
+        isClick?: boolean
     }
 }
