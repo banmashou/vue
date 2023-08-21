@@ -19,7 +19,7 @@ export default {
         let cache: IData = { data }
         // 如果存在过期时间
         if (expire) {
-            cache.expire = new Date().getTime() + data.expire * 1000
+            cache.expire = new Date().getTime() + expire * 1000
         }
         localStorage.setItem(key, JSON.stringify(cache))
     },

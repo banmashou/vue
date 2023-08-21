@@ -13,10 +13,7 @@ export async function login(values: ILoginData) {
     const {
         data: { token },
     } = await userApi.login(values)
-    store.set(CacheEnum.TOKEY_NAME, {
-        expire: 60,
-        token,
-    })
+    store.set(CacheEnum.TOKEY_NAME, { token }, 10)
     router.push({ name: 'home' })
 }
 
