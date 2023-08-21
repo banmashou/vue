@@ -11,7 +11,7 @@ export default [
                 type: 'success',
                 data: {
                     name: '斑马兽',
-                    avatar: '/avatar/bm.jpg',
+                    avatar: '/images/bm.jpg',
                     age: 18,
                 },
             }

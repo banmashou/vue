@@ -22,10 +22,10 @@ class Guard {
      * @return {*}
      * @memberof Guard
      */
-    private beforeEach(to: RouteLocationNormalized, from: RouteLocationNormalized) {
+    private async beforeEach(to: RouteLocationNormalized, from: RouteLocationNormalized) {
         if (this.isLogin(to) === false) return { name: 'login' }
         if (this.isGuest(to) === false) return from
-        this.getUserInfo()
+        await this.getUserInfo()
     }
 
     /**
@@ -34,7 +34,7 @@ class Guard {
      * @memberof Guard
      */
     private getUserInfo() {
-        if (this.token()) user().getUserInfo()
+        if (this.token()) return user().getUserInfo()
     }
 
     /**
