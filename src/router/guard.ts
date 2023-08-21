@@ -10,15 +10,34 @@ class Guard {
     constructor(private router: Router) {}
 
     public run() {
-        this.router.beforeEach((to, from) => {
-            let token = store.get('token')?.token
-            if (this.isLogin(to, token) === false) return { name: 'login' }
-            if (this.isGuest(to, token) === false) return from
-        })
+        this.router.beforeEach(this.beforeEach.bind(this))
     }
 
     /**
-     * @description 游客登录拦截
+     * @description 路由跳转前拦截
+     * @private
+     * @param {RouteLocationNormalized} to
+     * @param {RouteLocationNormalized} from
+     * @return {*}
+     * @memberof Guard
+     */
+    private beforeEach(to: RouteLocationNormalized, from: RouteLocationNormalized) {
+        if (this.isLogin(to) === false) return { name: 'login' }
+        if (this.isGuest(to) === false) return from
+    }
+
+    /**
+     * @description 获取token
+     * @private
+     * @return {*}  {(string | null)}
+     * @memberof Guard
+     */
+    private token(): string | null {
+        return store.get('token')?.token
+    }
+
+    /**
+     * @description 游客
      *
      * @private
      * @param {RouteLocationNormalized} route
@@ -26,12 +45,12 @@ class Guard {
      * @return {*}
      * @memberof Guard
      */
-    private isGuest(route: RouteLocationNormalized, token: any) {
-        return Boolean(!route.meta.guest || (route.meta.guest && !token))
+    private isGuest(route: RouteLocationNormalized) {
+        return Boolean(!route.meta.guest || (route.meta.guest && !this.token()))
     }
 
     /**
-     * @description 当前用户登录拦截
+     * @description 登录用户访问
      *
      * @private
      * @param {RouteLocationNormalized} route
@@ -39,8 +58,8 @@ class Guard {
      * @return {*}
      * @memberof Login
      */
-    private isLogin(route: RouteLocationNormalized, token: any) {
-        return Boolean(!route.meta.auth || (route.meta.auth && token))
+    private isLogin(route: RouteLocationNormalized) {
+        return Boolean(!route.meta.auth || (route.meta.auth && this.token()))
     }
 }
 
