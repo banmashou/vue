@@ -9,13 +9,31 @@ export interface User {
 interface LoginInterface {
     token: string
 }
+
+export interface ILoginData {
+    account: string
+    password: string
+}
 class userApi {
+    /**
+     * @description 获取用户信息
+     *
+     * @return {*}
+     * @memberof userApi
+     */
     info() {
         return http.request<User>({
             url: `info`,
         })
     }
-    login(data: any) {
+
+    /**
+     * @description 登录
+     * @param {ILoginData} data 登录参数
+     * @return {*}
+     * @memberof userApi
+     */
+    login(data: ILoginData) {
         return http.request<LoginInterface>({
             url: `login`,
             method: 'POST',

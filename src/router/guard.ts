@@ -1,5 +1,6 @@
-import user from '@/store/user'
-import { store } from '@/utils'
+import { CacheEnum } from '@/enum/cacheEnum'
+import userStore from '@/store/userStore'
+import utils from '@/utils'
 import { RouteLocationNormalized, Router } from 'vue-router'
 
 /**
@@ -34,7 +35,7 @@ class Guard {
      * @memberof Guard
      */
     private getUserInfo() {
-        if (this.token()) return user().getUserInfo()
+        if (this.token()) return userStore().getUserInfo()
     }
 
     /**
@@ -44,7 +45,7 @@ class Guard {
      * @memberof Guard
      */
     private token(): string | null {
-        return store.get('token')?.token
+        return utils.store.get(CacheEnum.TOKEY_NAME)
     }
 
     /**
