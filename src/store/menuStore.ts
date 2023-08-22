@@ -1,0 +1,29 @@
+import { IMenu } from '#/menu'
+import { defineStore } from 'pinia'
+import router from '@/router'
+
+export default defineStore('router', {
+    state: () => {
+        return {
+            menus: [] as IMenu[],
+        }
+    },
+    actions: {
+        // 根据路由获取菜单
+        getMenuByRoute() {
+            this.menus = router
+                .getRoutes()
+                .filter((route) => route.children.length && route.meta.menu)
+                .map((route) => {
+                    let menu: IMenu = { ...route.meta?.menu }
+                    menu.children = route.children
+                        .filter((route) => route.meta?.menu)
+                        .map((route) => {
+                            return route.meta?.menu
+                        }) as IMenu[]
+                    return menu
+                })
+                .filter((menu) => menu.children?.length)
+        },
+    },
+})
