@@ -71,7 +71,12 @@ class Guard {
      * @memberof Login
      */
     private isLogin(route: RouteLocationNormalized) {
-        return Boolean(!route.meta.auth || (route.meta.auth && this.token()))
+        const state = Boolean(!route.meta.auth || (route.meta.auth && this.token()))
+        // 缓存重定向路由
+        if (state === false) {
+            utils.store.set(CacheEnum.REDIRECT_ROUTE_NAME, route.name)
+        }
+        return state
     }
 }
 
