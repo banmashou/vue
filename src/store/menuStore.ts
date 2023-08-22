@@ -22,7 +22,7 @@ export default defineStore('menu', {
                     menu.children = route.children
                         .filter((route) => route.meta?.menu)
                         .map((route) => {
-                            return route.meta?.menu
+                            return { ...route.meta?.menu, route: route.name }
                         }) as IMenu[]
                     return menu
                 })

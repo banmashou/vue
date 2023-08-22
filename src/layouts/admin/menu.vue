@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { IMenu } from '#/menu'
 import menuStore from '@/store/menuStore'
+import router from '@/router'
 const menu = menuStore()
 
 // 收起未展开的菜单
@@ -19,6 +20,7 @@ const handle = (pmenu: IMenu, cmenu?: IMenu) => {
     pmenu.isClick = true
     if (cmenu) {
         cmenu.isClick = true
+        router.push({ name: cmenu.route })
     }
 }
 </script>
