@@ -2,13 +2,16 @@ import { IMenu } from '#/menu'
 import { defineStore } from 'pinia'
 import router from '@/router'
 
-export default defineStore('router', {
+export default defineStore('menu', {
     state: () => {
         return {
             menus: [] as IMenu[],
         }
     },
     actions: {
+        init() {
+            this.getMenuByRoute()
+        },
         // 根据路由获取菜单
         getMenuByRoute() {
             this.menus = router

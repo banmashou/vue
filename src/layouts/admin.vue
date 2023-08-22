@@ -2,6 +2,9 @@
 import MenuComponet from './admin/menu.vue'
 import Navber from './admin/navbar.vue'
 import HistoryLink from './admin/historyLink.vue'
+import menuStore from '@/store/menuStore'
+
+menuStore().init()
 </script>
 
 <template>
