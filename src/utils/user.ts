@@ -13,7 +13,7 @@ export async function login(values: ILoginData) {
     const {
         data: { token },
     } = await userApi.login(values)
-    store.set(CacheEnum.TOKEY_NAME, { token }, 10)
+    store.set(CacheEnum.TOKEY_NAME, { token }, 100)
     const routeName = store.get(CacheEnum.REDIRECT_ROUTE_NAME) ?? 'home'
     router.push({ name: routeName })
 }
