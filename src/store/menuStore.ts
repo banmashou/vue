@@ -2,6 +2,8 @@ import { IMenu } from '#/menu'
 import { defineStore } from 'pinia'
 import router from '@/router'
 import { RouteLocationNormalized } from 'vue-router'
+import utils from '@/utils'
+import { CacheEnum } from '@/enum/cacheEnum'
 
 export default defineStore('menu', {
     state: () => {
@@ -13,13 +15,18 @@ export default defineStore('menu', {
     actions: {
         init() {
             this.getMenuByRoute()
+            this.historyMenu = utils.store.get(CacheEnum.HISTORY_MENU)
         },
         // 添加历史菜单
         addHistoryMenu(route: RouteLocationNormalized) {
+            if (!route.meta?.menu) return
+
             const menu: IMenu = { ...route.meta?.menu, route: route.name as string }
             const isHas = this.historyMenu.some((menu) => menu.route === route.name)
             if (!isHas) this.historyMenu.unshift(menu)
             if (this.historyMenu.length > 10) this.historyMenu.pop()
+
+            utils.store.set(CacheEnum.HISTORY_MENU, this.historyMenu)
         },
         // 根据路由获取菜单
         getMenuByRoute() {

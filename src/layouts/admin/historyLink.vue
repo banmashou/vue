@@ -11,7 +11,7 @@ const menu = menuStore()
                 :to="{ name: menus.route }"
                 v-for="menus of menu.historyMenu"
                 class="border hover:bg-violet-600 hover:text-white duration-300 bg-white rounded-sm shadow-sm py-2 px-3 text-sm text-gray-600"
-                :class="{ 'bg-violet-600 text-white': $route.name == menus.route }"
+                :class="{ '!bg-violet-600 text-white': $route.name == menus.route }"
             >
                 {{ menus.title }}
                 <i class="fas fa-times ml-1"></i>
