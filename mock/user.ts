@@ -10,7 +10,7 @@ export default [
                 message: '请求成功',
                 type: 'success',
                 data: {
-                    name: '斑马兽呀',
+                    name: '斑马兽',
                     avatar: '/images/bm.jpg',
                     age: 18,
                 },

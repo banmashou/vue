@@ -15,7 +15,7 @@ export default defineStore('menu', {
     actions: {
         init() {
             this.getMenuByRoute()
-            this.historyMenu = utils.store.get(CacheEnum.HISTORY_MENU)
+            this.historyMenu = utils.store.get(CacheEnum.HISTORY_MENU) ?? []
         },
         // 添加历史菜单
         addHistoryMenu(route: RouteLocationNormalized) {
@@ -27,6 +27,11 @@ export default defineStore('menu', {
             if (this.historyMenu.length > 10) this.historyMenu.pop()
 
             utils.store.set(CacheEnum.HISTORY_MENU, this.historyMenu)
+        },
+        // 删除历史菜单
+        removeHistoryMenu(menu: IMenu) {
+            const index = this.historyMenu.indexOf(menu)
+            this.historyMenu.splice(index, 1)
         },
         // 根据路由获取菜单
         getMenuByRoute() {
