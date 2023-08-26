@@ -4,6 +4,9 @@ import utils from '@/utils'
 import menuSerivce from '@/composables/menu'
 
 const user = userStore()
+const fullScreen = () => {
+    document.documentElement.requestFullscreen()
+}
 </script>
 
 <template>
@@ -20,6 +23,7 @@ const user = userStore()
         </div>
 
         <div class="flex justify-center items-center relative group cursor-pointer">
+            <i class="fas fa-border-none mr-2" @click="fullScreen"></i>
             <img :src="user.info?.avatar" class="w-8 h-8 rounded-full object-cover" />
             <span class="ml-1 text-sm text-gray-600">{{ user.info?.name }}</span>
             <section
