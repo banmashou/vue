@@ -2,6 +2,7 @@
 import userStore from '@/store/userStore'
 import utils from '@/utils'
 import menuSerivce from '@/composables/menu'
+import Notification from '@/composables/notification.vue'
 
 const user = userStore()
 const fullScreen = () => {
@@ -23,7 +24,8 @@ const fullScreen = () => {
         </div>
 
         <div class="flex justify-center items-center relative group cursor-pointer">
-            <i class="fas fa-border-none mr-2" @click="fullScreen"></i>
+            <Notification class="mr-5" />
+            <i class="fas fa-border-none mr-5" @click="fullScreen"></i>
             <img :src="user.info?.avatar" class="w-8 h-8 rounded-full object-cover" />
             <span class="ml-1 text-sm text-gray-600">{{ user.info?.name }}</span>
             <section

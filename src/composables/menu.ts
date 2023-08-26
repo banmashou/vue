@@ -3,7 +3,7 @@ import { CacheEnum } from '@/enum/cacheEnum'
 import router from '@/router'
 import utils from '@/utils'
 import { ref } from 'vue'
-import { RouteLocationNormalized } from 'vue-router'
+import { RouteLocationNormalized, RouteLocationNormalizedLoaded } from 'vue-router'
 
 /**
  * @description 菜单

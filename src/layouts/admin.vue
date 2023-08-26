@@ -27,9 +27,8 @@ watch(
                 <router-view #default="{ Component, route }">
                     <Transition
                         appear
-                        class="animate__animated"
-                        :enter-active-class="route.meta.enterClass ?? 'animate__fadeInRight'"
-                        :leave-active-class="route.meta.leaveClass ?? 'animate__fadeOutRight'"
+                        :enter-active-class="route.meta.enterClass ?? 'animate__animated animate__fadeInRight'"
+                        :leave-active-class="route.meta.leaveClass ?? 'animate__animated animate__fadeOutRight'"
                     >
                         <component :is="Component" class="absolute w-full"></component>
                     </Transition>
