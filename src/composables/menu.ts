@@ -12,9 +12,19 @@ import { RouteLocationNormalizedLoaded } from 'vue-router'
 class Menu {
     public menus = ref<IMenu[]>([])
     public history = ref<IMenu[]>([])
+    public close = ref(false)
+
     constructor() {
         this.menus.value = this.getMenuByRoute()
         this.history.value = utils.store.get(CacheEnum.HISTORY_MENU) ?? []
+    }
+
+    /**
+     * @description 切换菜单栏的状态
+     * @memberof Menu
+     */
+    toggleState() {
+        this.close.value = !this.close.value
     }
 
     /**
@@ -26,6 +36,7 @@ class Menu {
         this.menus.value.forEach((m) => {
             m.isClick = false
             m.children?.forEach((c) => {
+                c.isClick = false
                 if (c.route === route.name) {
                     m.isClick = true
                     c.isClick = true

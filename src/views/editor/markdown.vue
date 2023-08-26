@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
-<template>markdown.vue</template>
+<template>
+    <div>markdown</div>
+</template>
 
 <style lang="scss"></style>
