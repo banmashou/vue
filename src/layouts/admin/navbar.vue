@@ -10,8 +10,8 @@ const user = userStore()
     <div class="bg-white p-3 px-5 flex justify-between items-center">
         <div class="flex items-center">
             <div @click="menuSerivce.toggleState">
-                <i class="fas fa-caret-square-right mr-2 cursor-pointer" v-if="menuSerivce.close.value"></i>
-                <i class="fas fa-caret-square-left mr-2 cursor-pointer" v-else></i>
+                <i class="fas fa-align-right mr-2 cursor-pointer" v-if="menuSerivce.close.value"></i>
+                <i class="fas fa-align-left mr-2 cursor-pointer" v-else></i>
             </div>
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{ path: '/' }">编辑器</el-breadcrumb-item>

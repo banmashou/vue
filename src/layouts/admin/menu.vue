@@ -8,8 +8,8 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
 </script>
 
 <template>
-    <div class="admin-menu">
-        <div class="menu w-[200px] bg-gray-800" :class="{ close: menuService.close.value }">
+    <div class="admin-menu" :class="{ close: menuService.close.value }">
+        <div class="menu w-[200px] bg-gray-800">
             <div class="logo">
                 <i class="fas fa-robot text-fuchsia-300 mr-2 text-[25px]"></i>
                 <span class="text-md">斑马兽</span>
@@ -52,7 +52,7 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
             </div>
         </div>
         <!-- 遮罩层 -->
-        <div class="bg block md:hidden"></div>
+        <div class="bg block md:hidden" @click="menuService.toggleState"></div>
     </div>
 </template>
 
@@ -66,9 +66,9 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
         }
         .container {
             dl {
-                @apply text-gray-300 text-sm relative;
+                @apply text-gray-300 text-sm relative p-4;
                 dt {
-                    @apply text-sm p-4 flex justify-between cursor-pointer items-center;
+                    @apply text-sm  flex justify-between cursor-pointer items-center;
                     section {
                         @apply flex items-center;
                         i {
@@ -90,33 +90,39 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
     }
 }
 @media screen and (min-width: 768px) {
-    .menu {
+    .admin-menu {
         &.close {
-            width: auto;
-            .logo {
-                span {
-                    @apply hidden;
+            .menu {
+                width: auto;
+                .logo {
+                    @apply justify-center;
+                    i {
+                        @apply mr-0;
+                    }
+                    span {
+                        @apply hidden;
+                    }
                 }
-            }
-            .container {
-                dl {
-                    dt {
-                        @apply flex justify-center;
-                        section {
-                            i {
-                                @apply mr-0;
-                            }
-                            span {
-                                @apply hidden;
-                            }
-                            &:nth-of-type(2) {
-                                @apply hidden;
+                .container {
+                    dl {
+                        dt {
+                            @apply flex justify-center;
+                            section {
+                                i {
+                                    @apply mr-0;
+                                }
+                                span {
+                                    @apply hidden;
+                                }
+                                &:nth-of-type(2) {
+                                    @apply hidden;
+                                }
                             }
                         }
-                    }
-                    &:hover {
-                        dd {
-                            @apply block absolute left-full top-[0px] w-[200px] bg-gray-700;
+                        &:hover {
+                            dd {
+                                @apply block absolute left-full top-[0px] w-[200px] bg-gray-700;
+                            }
                         }
                     }
                 }
@@ -134,6 +140,9 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
         }
         .bg {
             @apply bg-gray-100 z-40 opacity-75 w-screen h-screen absolute left-0 top-0;
+        }
+        &.close {
+            @apply hidden;
         }
     }
 }
