@@ -23,27 +23,31 @@ const fullScreen = () => {
             </el-breadcrumb>
         </div>
 
-        <div class="flex justify-center items-center relative group cursor-pointer">
-            <Notification class="mr-5" />
-            <i class="fas fa-border-none mr-5" @click="fullScreen"></i>
-            <img :src="user.info?.avatar" class="w-8 h-8 rounded-full object-cover" />
-            <span class="ml-1 text-sm text-gray-600">{{ user.info?.name }}</span>
-            <section
-                class="group-hover:block absolute top-full bg-white shadow-sm px-3 whitespace-nowrap border rounded-md hidden"
-            >
-                <div class="flex items-center border-b py-3">
-                    <a class="fas fa-folder-open"></a>
-                    <span class="text-xs text-gray-600 ml-2">文档资料</span>
+        <div class="flex justify-center items-center relative cursor-pointer">
+            <Notification class="mr-8" />
+            <i class="fas fa-border-none mr-8" @click="fullScreen"></i>
+            <div class="group relative">
+                <div class="flex justify-center items-center">
+                    <img :src="user.info?.avatar" class="w-8 h-8 rounded-full object-cover" />
+                    <span class="ml-1 text-sm text-gray-600">{{ user.info?.name }}</span>
                 </div>
-                <div class="flex items-center border-b py-3">
-                    <a class="fas fa-home"></a>
-                    <span class="text-xs text-gray-600 ml-2">网站首页</span>
-                </div>
-                <div class="flex items-center border-b py-3" @click="utils.user.logout()">
-                    <a class="fas fa-sign-out-alt"></a>
-                    <span class="text-xs text-gray-600 ml-2">退出登录</span>
-                </div>
-            </section>
+                <section
+                    class="group-hover:block absolute right-0 top-full z-10 bg-white shadow-sm px-3 whitespace-nowrap border rounded-md hidden"
+                >
+                    <div class="flex items-center border-b py-3">
+                        <a class="fas fa-folder-open"></a>
+                        <span class="text-xs text-gray-600 ml-2">文档资料</span>
+                    </div>
+                    <div class="flex items-center border-b py-3">
+                        <a class="fas fa-home"></a>
+                        <span class="text-xs text-gray-600 ml-2">网站首页</span>
+                    </div>
+                    <div class="flex items-center border-b py-3" @click="utils.user.logout()">
+                        <a class="fas fa-sign-out-alt"></a>
+                        <span class="text-xs text-gray-600 ml-2">退出登录</span>
+                    </div>
+                </section>
+            </div>
         </div>
     </div>
 </template>
