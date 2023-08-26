@@ -8,71 +8,78 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
 </script>
 
 <template>
-    <div class="menu w-[200px] bg-gray-800" :class="{ close: menuService.close.value }">
-        <div class="logo">
-            <i class="fas fa-robot text-fuchsia-300 mr-2 text-[25px]"></i>
-            <span class="text-md">斑马兽</span>
-        </div>
+    <div class="admin-menu">
+        <div class="menu w-[200px] bg-gray-800" :class="{ close: menuService.close.value }">
+            <div class="logo">
+                <i class="fas fa-robot text-fuchsia-300 mr-2 text-[25px]"></i>
+                <span class="text-md">斑马兽</span>
+            </div>
 
-        <!-- 菜单 -->
-        <div class="container">
-            <dl>
-                <dt
-                    @click="$router.push('/admin')"
-                    :class="{ 'bg-violet-600 text-white p-3': $route.name === 'admin.home' }"
-                >
-                    <section>
-                        <i class="fas fa-home"></i>
-                        <span class="text-md">dashboard</span>
-                    </section>
-                </dt>
-            </dl>
-            <dl v-for="(menu, index) of menuService.menus.value" :key="index">
-                <dt @click="menu.isClick = true">
-                    <section>
-                        <i :class="menu.icon"></i>
-                        <span class="text-md">{{ menu.title }}</span>
-                    </section>
-                    <section>
-                        <i class="fas fa-angle-down duration-300" :class="{ 'rotate-180': menu.isClick }"></i>
-                    </section>
-                </dt>
-                <dd
-                    v-show="menu.isClick"
-                    :class="{ active: cmenu.isClick }"
-                    v-for="(cmenu, key) of menu.children"
-                    :key="key"
-                    @click="$router.push({ name: cmenu.route })"
-                >
-                    {{ cmenu?.title }}
-                </dd>
-            </dl>
+            <!-- 菜单 -->
+            <div class="container">
+                <dl>
+                    <dt
+                        @click="$router.push('/admin')"
+                        :class="{ 'bg-violet-600 text-white p-3': $route.name === 'admin.home' }"
+                    >
+                        <section>
+                            <i class="fas fa-home"></i>
+                            <span class="text-md">dashboard</span>
+                        </section>
+                    </dt>
+                </dl>
+                <dl v-for="(menu, index) of menuService.menus.value" :key="index">
+                    <dt @click="menu.isClick = true">
+                        <section>
+                            <i :class="menu.icon"></i>
+                            <span class="text-md">{{ menu.title }}</span>
+                        </section>
+                        <section>
+                            <i class="fas fa-angle-down duration-300" :class="{ 'rotate-180': menu.isClick }"></i>
+                        </section>
+                    </dt>
+                    <dd
+                        v-show="menu.isClick"
+                        :class="{ active: cmenu.isClick }"
+                        v-for="(cmenu, key) of menu.children"
+                        :key="key"
+                        @click="$router.push({ name: cmenu.route })"
+                    >
+                        {{ cmenu?.title }}
+                    </dd>
+                </dl>
+            </div>
         </div>
+        <!-- 遮罩层 -->
+        <div class="bg block md:hidden"></div>
     </div>
 </template>
 
 <style lang="scss">
-.menu {
-    .logo {
-        @apply text-gray-300 flex items-center p-4;
-    }
-    .container {
-        dl {
-            @apply text-gray-300 text-sm;
-            dt {
-                @apply text-sm p-4 flex justify-between cursor-pointer items-center;
-                section {
-                    @apply flex items-center;
-                    i {
-                        @apply mr-2 text-sm;
+.admin-menu {
+    .menu {
+        @apply h-full;
+        .logo {
+            @apply text-gray-300 flex items-center p-4;
+        }
+        .container {
+            dl {
+                @apply text-gray-300 text-sm;
+                dt {
+                    @apply text-sm p-4 flex justify-between cursor-pointer items-center;
+                    section {
+                        @apply flex items-center;
+                        i {
+                            @apply mr-2 text-sm;
+                        }
                     }
                 }
-            }
-            dd {
-                @apply py-3 pl-4 my-2 text-white rounded-md cursor-pointer duration-300 hover:bg-violet-500
+                dd {
+                    @apply py-3 pl-4 my-2 text-white rounded-md cursor-pointer duration-300 hover:bg-violet-500
 								bg-gray-700;
-                &.active {
-                    @apply bg-violet-700;
+                    &.active {
+                        @apply bg-violet-700;
+                    }
                 }
             }
         }
@@ -106,9 +113,15 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
     }
 }
 @media screen and (max-width: 768px) {
-    .menu {
+    .admin-menu {
         @apply h-screen w-[200px] absolute left-0 top-0 z-50;
-        .close {
+        .menu {
+            @apply h-full z-50 absolute;
+            .close {
+            }
+        }
+        .bg {
+            @apply bg-gray-100 z-40 opacity-75 w-screen h-screen absolute left-0 top-0;
         }
     }
 }
