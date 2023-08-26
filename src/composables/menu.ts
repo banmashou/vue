@@ -12,7 +12,7 @@ import { RouteLocationNormalizedLoaded } from 'vue-router'
 class Menu {
     public menus = ref<IMenu[]>([])
     public history = ref<IMenu[]>([])
-    public close = ref(false)
+    public close = ref(true)
 
     constructor() {
         this.menus.value = this.getMenuByRoute()

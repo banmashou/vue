@@ -8,14 +8,14 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
 </script>
 
 <template>
-    <div class="menu w-[200px] bg-gray-800">
-        <div class="logo text-gray-300 flex items-center p-4">
+    <div class="menu w-[200px] bg-gray-800" :class="{ close: menuService.close.value }">
+        <div class="logo">
             <i class="fas fa-robot text-fuchsia-300 mr-2 text-[25px]"></i>
             <span class="text-md">斑马兽</span>
         </div>
 
         <!-- 菜单 -->
-        <div class="left-container">
+        <div class="container">
             <dl>
                 <dt
                     @click="$router.push('/admin')"
@@ -52,8 +52,11 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
 </template>
 
 <style lang="scss">
-.admin {
-    .left-container {
+.menu {
+    .logo {
+        @apply text-gray-300 flex items-center p-4;
+    }
+    .container {
         dl {
             @apply text-gray-300 text-sm;
             dt {
@@ -70,6 +73,29 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
 								bg-gray-700;
                 &.active {
                     @apply bg-violet-700;
+                }
+            }
+        }
+    }
+    &.close {
+        width: auto;
+        .logo {
+            span {
+                @apply hidden;
+            }
+        }
+        .container {
+            dl {
+                dt {
+                    @apply flex justify-center;
+                    section {
+                        span {
+                            @apply hidden;
+                        }
+                        &:nth-of-type(2) {
+                            @apply hidden;
+                        }
+                    }
                 }
             }
         }
