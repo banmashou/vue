@@ -8,35 +8,38 @@ const route = useRoute()
 const menu = menuStore()
 menu.init()
 onBeforeRouteUpdate(() => {
-	menu.addHistoryMenu(route)
+    menu.addHistoryMenu(route)
 })
 </script>
 
 <template>
-	<div class="admin h-screen w-screen grid grid-cols-[auto_1fr]">
-		<MenuComponet class="hidden md:block" />
-		<div class="content bg-gray-100 grid grid-rows-[auto_1fr]">
-			<div>
-				<Navber />
-				<HistoryLink />
-			</div>
-			<div class="p-3 relative overflow-y-auto">
-				<router-view #default="{ Component }">
-					<Transition appear class="animate__animated" enter-active-class="animate__fadeInRight"
-						leave-active-class="animate__fadeOutLeft">
-						<component :is="Component" class="absolute w-full"></component>
-					</Transition>
-				</router-view>
-			</div>
-		</div>
-	</div>
+    <div class="admin h-screen w-screen grid grid-cols-[auto_1fr]">
+        <MenuComponet class="hidden md:block" />
+        <div class="content bg-gray-100 grid grid-rows-[auto_1fr]">
+            <div>
+                <Navber />
+                <HistoryLink />
+            </div>
+            <div class="p-3 relative overflow-y-auto">
+                <router-view #default="{ Component, route }">
+                    <Transition
+                        appear
+                        class="animate__animated"
+                        :enter-active-class="route.meta.enterClass ?? 'animate__fadeInRight'"
+                        :leave-active-class="route.meta.leaveClass ?? 'animate__fadeOutRight'"
+                    >
+                        <component :is="Component" class="absolute w-full"></component>
+                    </Transition>
+                </router-view>
+            </div>
+        </div>
+    </div>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
 
 <script lang="ts">
 export default {
-	route: { meta: { auth: true } },
+    route: { meta: { auth: true } },
 }
 </script>
