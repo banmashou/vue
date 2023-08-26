@@ -29,7 +29,7 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
                     </dt>
                 </dl>
                 <dl v-for="(menu, index) of menuService.menus.value" :key="index">
-                    <dt @click="menu.isClick = true">
+                    <dt @click="menuService.toggleParentMenu(menu)">
                         <section>
                             <i :class="menu.icon"></i>
                             <span class="text-md">{{ menu.title }}</span>
@@ -38,14 +38,15 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
                             <i class="fas fa-angle-down duration-300" :class="{ 'rotate-180': menu.isClick }"></i>
                         </section>
                     </dt>
-                    <dd
-                        v-show="menu.isClick"
-                        :class="{ active: cmenu.isClick }"
-                        v-for="(cmenu, key) of menu.children"
-                        :key="key"
-                        @click="$router.push({ name: cmenu.route })"
-                    >
-                        {{ cmenu?.title }}
+                    <dd :class="menu.isClick && !menuService.close.value ? 'block' : 'hidden'">
+                        <div
+                            :class="{ active: cmenu.isClick }"
+                            v-for="(cmenu, key) of menu.children"
+                            :key="key"
+                            @click="$router.push({ name: cmenu.route })"
+                        >
+                            {{ cmenu?.title }}
+                        </div>
                     </dd>
                 </dl>
             </div>
@@ -57,6 +58,7 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
 
 <style lang="scss">
 .admin-menu {
+    @apply z-20;
     .menu {
         @apply h-full;
         .logo {
@@ -64,7 +66,7 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
         }
         .container {
             dl {
-                @apply text-gray-300 text-sm;
+                @apply text-gray-300 text-sm relative;
                 dt {
                     @apply text-sm p-4 flex justify-between cursor-pointer items-center;
                     section {
@@ -75,10 +77,12 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
                     }
                 }
                 dd {
-                    @apply py-3 pl-4 my-2 text-white rounded-md cursor-pointer duration-300 hover:bg-violet-500
+                    div {
+                        @apply py-3 pl-4 my-2 text-white rounded-md cursor-pointer duration-300 hover:bg-violet-500
 								bg-gray-700;
-                    &.active {
-                        @apply bg-violet-700;
+                        &.active {
+                            @apply bg-violet-700;
+                        }
                     }
                 }
             }
@@ -99,12 +103,20 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
                     dt {
                         @apply flex justify-center;
                         section {
+                            i {
+                                @apply mr-0;
+                            }
                             span {
                                 @apply hidden;
                             }
                             &:nth-of-type(2) {
                                 @apply hidden;
                             }
+                        }
+                    }
+                    &:hover {
+                        dd {
+                            @apply block absolute left-full top-[0px] w-[200px] bg-gray-700;
                         }
                     }
                 }

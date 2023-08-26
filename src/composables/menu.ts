@@ -21,6 +21,18 @@ class Menu {
 
     /**
      * @description 切换菜单栏的状态
+     * @param {IMenu} menu
+     * @memberof Menu
+     */
+    toggleParentMenu(menu: IMenu) {
+        this.menus.value.forEach((m) => {
+            m.isClick = false
+            if (m === menu) m.isClick = true
+        })
+    }
+
+    /**
+     * @description 切换菜单栏的状态
      * @memberof Menu
      */
     toggleState() {
