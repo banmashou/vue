@@ -77,27 +77,38 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
             }
         }
     }
-    &.close {
-        width: auto;
-        .logo {
-            span {
-                @apply hidden;
+}
+@media screen and (min-width: 768px) {
+    .menu {
+        &.close {
+            width: auto;
+            .logo {
+                span {
+                    @apply hidden;
+                }
             }
-        }
-        .container {
-            dl {
-                dt {
-                    @apply flex justify-center;
-                    section {
-                        span {
-                            @apply hidden;
-                        }
-                        &:nth-of-type(2) {
-                            @apply hidden;
+            .container {
+                dl {
+                    dt {
+                        @apply flex justify-center;
+                        section {
+                            span {
+                                @apply hidden;
+                            }
+                            &:nth-of-type(2) {
+                                @apply hidden;
+                            }
                         }
                     }
                 }
             }
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    .menu {
+        @apply h-screen w-[200px] absolute left-0 top-0 z-50;
+        .close {
         }
     }
 }
