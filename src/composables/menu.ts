@@ -4,6 +4,10 @@ import router from '@/router'
 import utils from '@/utils'
 import { ref } from 'vue'
 
+/**
+ * @description 菜单
+ * @class Menu
+ */
 class Menu {
     public menus = ref<IMenu[]>([])
     public history = ref<IMenu[]>([])
