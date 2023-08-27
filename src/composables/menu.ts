@@ -3,7 +3,7 @@ import { CacheEnum } from '@/enum/cacheEnum'
 import router from '@/router'
 import utils from '@/utils'
 import { ref } from 'vue'
-import { RouteLocationNormalized, RouteLocationNormalizedLoaded } from 'vue-router'
+import { RouteLocationNormalized, RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
 
 /**
  * @description 菜单
@@ -17,7 +17,23 @@ class Menu {
 
     constructor() {
         this.menus.value = this.getMenuByRoute()
-        this.history.value = utils.store.get(CacheEnum.HISTORY_MENU) ?? []
+        this.history.value = this.getHistoryMenu()
+    }
+
+    /**
+     * @description 获取历史菜单
+     * @private
+     * @return {*}
+     * @memberof Menu
+     */
+    private getHistoryMenu() {
+        const routes = [] as RouteRecordRaw[]
+        router.getRoutes().map((r) => routes.push(...r.children))
+
+        let menus: IMenu[] = utils.store.get(CacheEnum.HISTORY_MENU) ?? []
+        return menus.filter((m) => {
+            return routes.some((r) => r.name === m.route)
+        })
     }
 
     /**

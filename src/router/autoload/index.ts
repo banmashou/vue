@@ -22,5 +22,9 @@ function autoload(router: Router) {
         })
         return route
     })
+
+    routes.forEach((r) => {
+        router.addRoute(r)
+    })
 }
 export default autoload
