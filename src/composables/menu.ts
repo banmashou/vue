@@ -60,6 +60,7 @@ class Menu {
     removeHistoryMenu(menu: IMenu) {
         const index = this.history.value.indexOf(menu)
         this.history.value.splice(index, 1)
+        utils.store.set(CacheEnum.HISTORY_MENU, this.history.value)
     }
 
     /**
