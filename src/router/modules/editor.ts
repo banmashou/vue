@@ -10,7 +10,7 @@ export default {
             name: 'markdown',
             path: 'markdown',
             component: () => import('@/views/editor/markdown.vue'),
-            meta: { menu: { title: 'markdown' } },
+            meta: { permission: 'abc', menu: { title: 'markdown' } },
         },
     ],
 } as RouteRecordRaw
