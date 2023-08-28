@@ -1,5 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { nextTick } from 'vue'
+import ToastEditor from './toastEditor'
 
-<template>编辑器</template>
+nextTick(() => {
+    new ToastEditor('#editor', '300px', 'abc')
+})
+</script>
 
-<style lang="scss"></style>
+<template>
+    <div id="editor"></div>
+</template>
+
+<style lang="scss">
+@import 'https://uicdn.toast.com/editor/latest/toastui-editor.min.css';
+
+#editor {
+    @apply bg-white;
+}
+</style>
