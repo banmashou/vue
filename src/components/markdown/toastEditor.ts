@@ -7,7 +7,7 @@ export default class {
      * @param height 高度
      * @param initialValue 初始值
      */
-    constructor(el: string, height: string, initialValue: string) {
+    constructor(el: string, initialValue: string, height: string) {
         this.editor = new toastui.Editor({
             el: document.querySelector(el),
             initialEditType: 'markdown',

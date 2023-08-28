@@ -2,8 +2,18 @@
 import { nextTick } from 'vue'
 import ToastEditor from './toastEditor'
 
+interface IProps {
+    modelValue?: string
+    height?: number
+    placeholder: string
+}
+const props = withDefaults(defineProps<IProps>(), {
+    modelValue: '',
+    height: 500,
+    placeholder: '',
+})
 nextTick(() => {
-    new ToastEditor('#editor', '300px', 'abc')
+    new ToastEditor('#editor', `${props.modelValue}`, `${props.height}px`)
 })
 </script>
 
