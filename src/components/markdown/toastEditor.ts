@@ -1,3 +1,4 @@
+import uploadApi from '@/apis/uploadApi'
 export default class {
     editor: toastui.Editor
     /**
@@ -14,6 +15,17 @@ export default class {
             previewStyle: 'vertical',
             height: height,
             initialValue: initialValue,
+        })
+        this.ImageHook()
+    }
+    private ImageHook() {
+        this.editor.removeHook('addImageBlobHook')
+        this.editor.addHook('addImageBlobHook', async (blob: File, callback: Function) => {
+            const form = new FormData()
+            form.append('file', blob, blob.name)
+            const response = await uploadApi.uploadImage(form)
+
+            callback(response.data.url, blob.name)
         })
     }
 }
