@@ -1,6 +1,8 @@
 import uploadApi from '@/apis/uploadApi'
 export default class {
     editor: toastui.Editor
+    isFullscreen: boolean = false
+
     /**
      * @description markdown
      * @param el HTMLElement
@@ -8,16 +10,84 @@ export default class {
      * @param height 高度
      * @param initialValue 初始值
      */
-    constructor(el: string, initialValue: string, height: string) {
+    constructor(el: string, initialValue: string, public height: string) {
         this.editor = new toastui.Editor({
             el: document.querySelector(el),
             initialEditType: 'markdown',
             previewStyle: 'vertical',
             height: height,
             initialValue: initialValue,
+            toolbarItems: this.toolbar(),
         })
         this.ImageHook()
     }
+
+    /**
+     * @description 自定义工具
+     * @private
+     */
+    private toolbar() {
+        return [
+            ['heading', 'bold', 'italic', 'strike'],
+            ['hr', 'quote'],
+            ['ul', 'ol', 'task', 'indent', 'outdent'],
+            ['table', 'image', 'link'],
+            ['code', 'codeblock'],
+            [
+                {
+                    el: this.fullscreen(),
+                    command: 'bold',
+                    tooltip: 'Custom Bold',
+                },
+            ],
+        ]
+    }
+
+    /**
+     * @description 全屏
+     * @private
+     */
+    private fullscreen() {
+        const button = document.createElement('button') as HTMLButtonElement
+        button.innerHTML = '全屏'
+        button.style.margin = '0'
+
+        // 全屏事件
+        button.addEventListener('click', () => {
+            this.editor.setHeight('100vh')
+            this.toggleFullscreen()
+        })
+
+        // esc退出全屏
+        document.documentElement.addEventListener('keyup', (event: KeyboardEvent) => {
+            if (event.key === 'Escape' && this.isFullscreen) {
+                this.toggleFullscreen()
+            }
+        })
+
+        return button
+    }
+
+    /**
+     * @description 切换全屏
+     * @private
+     */
+    private toggleFullscreen() {
+        const ui = document.querySelector('.toastui-editor-defaultUI') as HTMLDivElement
+        ui.classList.toggle('fullscreen')
+        this.isFullscreen = !this.isFullscreen
+        if (this.isFullscreen === false) {
+            this.editor.setHeight(this.height)
+        } else {
+            this.editor.setHeight('100vh')
+        }
+        this.editor.focus()
+    }
+
+    /**
+     * @description 图片上传
+     * @private
+     */
     private ImageHook() {
         this.editor.removeHook('addImageBlobHook')
         this.editor.addHook('addImageBlobHook', async (blob: File, callback: Function) => {
