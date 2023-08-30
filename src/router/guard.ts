@@ -1,6 +1,4 @@
 import { CacheEnum } from '@/enum/cacheEnum'
-import menuStore from '@/store/menuStore'
-import userStore from '@/store/userStore'
 import utils from '@/utils'
 import { RouteLocationNormalized, Router } from 'vue-router'
 
@@ -27,15 +25,6 @@ class Guard {
     private async beforeEach(to: RouteLocationNormalized, from: RouteLocationNormalized) {
         if (this.isLogin(to) === false) return { name: 'login' }
         if (this.isGuest(to) === false) return from
-    }
-
-    /**
-     * @description 获取用户信息
-     * @private
-     * @memberof Guard
-     */
-    private getUserInfo() {
-        if (this.token()) return userStore().getUserInfo()
     }
 
     /**

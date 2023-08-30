@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { nextTick, ref } from 'vue'
-import { echarts_aHistogram, echarts_thePieChart } from './echarts'
+import { echarts_aHistogram } from './echarts'
 
 interface ICard {
     title: string
@@ -47,8 +47,9 @@ const cards = ref<ICard[]>([
 ])
 
 nextTick(() => {
-    echarts.init(document.getElementById('echarts_aHistogram')).setOption(echarts_aHistogram)
-    echarts.init(document.getElementById('echarts_thePieChart')).setOption(echarts_thePieChart)
+    echarts.init(document.getElementById('echarts_aHistogram') as HTMLDivElement).setOption(echarts_aHistogram)
+
+    echarts.init(document.getElementById('echarts_thePieChart') as HTMLDivElement).setOption(echarts_aHistogram)
 })
 </script>
 

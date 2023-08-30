@@ -1,9 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-    <a class="bm-link">网站首页</a>
-    <a class="bm-link">会员注册</a>
-    <a class="bm-link">找回密码</a>
+    <router-link to="/" class="bm-link">网站首页</router-link>
+    <router-link to="/" class="bm-link">会员注册</router-link>
+    <router-link to="/" class="bm-link">找回密码</router-link>
 </template>
 
 <style lang="scss">
