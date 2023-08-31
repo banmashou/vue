@@ -15,7 +15,12 @@ declare namespace toastui {
     }
 }
 
+/**
+ * @description wangEditor 类型声明
+ * @class wangEditor
+ */
 declare class wangEditor {
     constructor(el: string)
     create: () => void
+    config: { [key: string]: any }
 }
