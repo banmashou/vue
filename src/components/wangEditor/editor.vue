@@ -5,11 +5,13 @@ import wangEditor from './wangEditor'
 interface Props {
     height?: number
     modelValue?: string
+    uploadImgServer?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
     height: 300,
     modelValue: '',
+    uploadImgServer: '/api/upload/image',
 })
 
 const emit = defineEmits(['update:modelValue'])
