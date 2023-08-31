@@ -1,5 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Editor from '@/components/wangEditor/editor.vue'
+</script>
 
-<template>富文本编辑器</template>
+<template>
+    <Editor />
+</template>
 
 <style lang="scss"></style>
