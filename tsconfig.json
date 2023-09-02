@@ -33,13 +33,14 @@
         "src/**/*.tsx",
         "src/**/*.vue",
         "mock/**/*.ts",
+        "vite.config.ts",
         "vite/**/*.ts",
         "types/**/*.d.ts",
         "types/**/*.ts"
-    ],
-    "references": [
-        {
-            "path": "./tsconfig.node.json"
-        }
     ]
+    // "references": [
+    //     {
+    //         "path": "./tsconfig.node.json"
+    //     }
+    // ]
 }
