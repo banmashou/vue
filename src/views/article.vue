@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import articleApi from '@/apis/articleApi'
-import gsap from 'gsap'
 
 const articles = ref()
 articleApi.article().then(({ data }) => (articles.value = data))
@@ -8,29 +7,15 @@ articleApi.article().then(({ data }) => (articles.value = data))
 const del = (index: number) => {
     articles.value.splice(index, 1)
 }
-
-const beforeEnter = (el) => {
-    gsap.set(el, {
-        opacity: 0,
-    })
-}
-
-const enter = (el) => {
-    gsap.to(el, {
-        opacity: 1,
-        duration: 1,
-        delay: el.dataset.index * 0.2,
-    })
-}
 </script>
 
 <template>
     <div class="article">
-        <TransitionGroup appear tag="ul" name="animate" @before-enter="beforeEnter" @enter="enter">
+        <AnimateList tag="ul">
             <li :data-index="index" v-for="(article, index) of articles" :key="article.id" @click="del(index)">
                 {{ article.title }}
             </li>
-        </TransitionGroup>
+        </AnimateList>
     </div>
 </template>
 
@@ -50,18 +35,5 @@ const enter = (el) => {
             border-radius: 5px;
         }
     }
-}
-
-.animate-leave-active {
-    transition: all 1s ease;
-    position: absolute;
-    width: 100%;
-}
-
-.animate-leave-to {
-    opacity: 0;
-}
-.animate-move {
-    transition: all 1s ease;
 }
 </style>
