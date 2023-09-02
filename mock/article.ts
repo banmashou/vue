@@ -9,7 +9,7 @@ export default [
                 code: 200,
                 message: '请求成功',
                 type: 'success',
-                data: new Array(10).fill().map((article, index) => {
+                data: new Array(10).fill('').map((_article, index) => {
                     return {
                         id: index + 1,
                         title: Random.ctitle(),

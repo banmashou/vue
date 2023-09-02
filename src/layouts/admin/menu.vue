@@ -24,7 +24,7 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
                     <dt @click="menuService.toggleParentMenu(menu)">
                         <section>
                             <!-- <i :class="menu.icon"></i> -->
-                            <component :is="icons[menu.icon]" size="18" fill="#dcdcdc" class="mr-2" />
+                            <component :is="icons[menu.icon!]" size="18" fill="#dcdcdc" class="mr-2" />
                             <span class="text-md">{{ menu.title }}</span>
                         </section>
                         <section>

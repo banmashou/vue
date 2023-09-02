@@ -33,6 +33,7 @@
         "src/**/*.tsx",
         "src/**/*.vue",
         "mock/**/*.ts",
+        "vite/**/*.ts",
         "types/**/*.d.ts",
         "types/**/*.ts"
     ],
