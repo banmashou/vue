@@ -4,10 +4,14 @@ import { RendererElement } from 'vue'
 
 interface props {
     tag?: string
+    duration?: number
+    delay?: number
 }
 
 const props = withDefaults(defineProps<props>(), {
-    tag: null,
+    tag: 'div',
+    duration: 0.5,
+    delay: 0.2,
 })
 
 const beforeEnter = (el: RendererElement) => {
@@ -19,8 +23,8 @@ const beforeEnter = (el: RendererElement) => {
 const enter = (el: RendererElement) => {
     gsap.to(el, {
         opacity: 1,
-        duration: 1,
-        delay: el.dataset.index * 0.2,
+        duration: props.duration,
+        delay: el.dataset.index * props.delay,
     })
 }
 </script>

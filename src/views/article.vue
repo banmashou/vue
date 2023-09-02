@@ -11,7 +11,7 @@ const del = (index: number) => {
 
 <template>
     <div class="article">
-        <AnimateList tag="ul">
+        <AnimateList tag="ul" :duration="5">
             <li :data-index="index" v-for="(article, index) of articles" :key="article.id" @click="del(index)">
                 {{ article.title }}
             </li>
