@@ -12,7 +12,10 @@ dist
 dist-ssr
 *.local
 
+.pnpm-debug.log
 stats.html
+auto-imports.d.ts
+components.d.ts
 
 # Editor directories and files
 .vscode
