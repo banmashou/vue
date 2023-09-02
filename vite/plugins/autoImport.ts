@@ -7,6 +7,9 @@ export function autoImport(plugins: Plugin[]) {
     plugins.push(
         AutoImport({
             resolvers: [ElementPlusResolver()],
+            imports: ['vue', 'vue-router'],
+            //为true时在项目根目录自动创建
+            dts: 'types/auto-imports.d.ts',
         }),
         Components({
             resolvers: [ElementPlusResolver()],
