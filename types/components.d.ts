@@ -7,6 +7,9 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BmButton: typeof import('./../src/components/bm/button.vue')['default']
+    BmInput: typeof import('./../src/components/bm/input.vue')['default']
+    BmLink: typeof import('./../src/components/bm/link.vue')['default']
     Breadcrumb: typeof import('./../src/components/breadcrumb.vue')['default']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
@@ -14,9 +17,6 @@ declare module 'vue' {
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTag: typeof import('element-plus/es')['ElTag']
-    FormBmButton: typeof import('./../src/components/form/bm-button.vue')['default']
-    FormBmInput: typeof import('./../src/components/form/bm-input.vue')['default']
-    FormBmLink: typeof import('./../src/components/form/bm-link.vue')['default']
     MarkdownEditor: typeof import('./../src/components/markdown/editor.vue')['default']
     Notification: typeof import('./../src/components/notification.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
