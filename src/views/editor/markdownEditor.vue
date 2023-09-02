@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import Editor from '@/components/markdown/editor.vue'
 
-const content = ref('abc')
+const content = ref('斑马兽')
 </script>
 
 <template>

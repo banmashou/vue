@@ -6,15 +6,15 @@ export default {
     meta: { auth: true, menu: { title: '编辑器', icon: 'fas fa-baseball-ball' } },
     children: [
         {
-            name: 'base',
-            path: 'base',
-            component: () => import('@/views/editor/base.vue'),
-            meta: { permission: 'base_editor', menu: { title: '富文本编辑器' } },
+            name: 'wang',
+            path: 'wang',
+            component: () => import('@/views/editor/wangEditor.vue'),
+            meta: { permission: 'wang_editor', menu: { title: '富文本编辑器' } },
         },
         {
             name: 'markdown',
             path: 'markdown',
-            component: () => import('@/views/editor/markdown.vue'),
+            component: () => import('@/views/editor/markdownEditor.vue'),
             meta: { permission: 'markdown_editor', menu: { title: 'Markdown' } },
         },
     ],
