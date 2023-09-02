@@ -11,7 +11,7 @@ export default [
                 type: 'success',
                 data: new Array(10).fill().map((article, index) => {
                     return {
-                        id: index,
+                        id: index + 1,
                         title: Random.ctitle(),
                         content: Random.cparagraph(),
                     }
