@@ -3,6 +3,7 @@ import { setupTailwindcss } from './tailwindcss'
 import _ from 'lodash'
 import setupElementPlus from './elementui'
 import setupPinia from './pinia'
+import setIconPark from './iconpark'
 
 /**
  * @module 插件工具
@@ -14,6 +15,7 @@ export function setupPlugins(app: App) {
     setupTailwindcss()
     setupElementPlus()
     setupPinia(app)
+    setIconPark(app)
 }
 
 /**

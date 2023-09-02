@@ -9,6 +9,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@icon-park/vue-next": "^1.4.2",
 		"@toast-ui/editor": "^3.2.2",
 		"@types/echarts": "^4.9.18",
 		"@vee-validate/i18n": "^4.7.4",

@@ -6,9 +6,16 @@ import Notification from '@/components/notification.vue'
 import Breadcrumb from '@/components/breadcrumb.vue'
 
 const user = userStore()
+const isFullScreen = ref<boolean>(false)
 const fullScreen = () => {
-    document.documentElement.requestFullscreen()
+    isFullScreen.value ? document.exitFullscreen() : document.documentElement.requestFullscreen()
+    isFullScreen.value = !isFullScreen.value
 }
+
+// esc退出全屏
+document.addEventListener('fullscreenchange', () => {
+    isFullScreen.value = document.fullscreenElement ? true : false
+})
 </script>
 
 <template>
@@ -22,8 +29,16 @@ const fullScreen = () => {
         </div>
 
         <div class="flex justify-center items-center relative cursor-pointer">
-            <Notification class="mr-8" />
-            <i class="fas fa-border-none mr-8" @click="fullScreen"></i>
+            <Notification class="mr-5" />
+            <icon-off-screen-one
+                theme="outline"
+                size="24"
+                fill="#333"
+                @click="fullScreen"
+                class="mr-5"
+                v-if="isFullScreen"
+            />
+            <icon-full-screen-one theme="outline" size="24" fill="#333" @click="fullScreen" class="mr-5" v-else />
             <div class="group relative">
                 <div class="flex justify-center items-center">
                     <img :src="user.info?.avatar" class="w-8 h-8 rounded-full object-cover" />
@@ -33,15 +48,15 @@ const fullScreen = () => {
                     class="group-hover:block absolute right-0 top-full z-10 bg-white shadow-sm px-3 whitespace-nowrap border rounded-md hidden"
                 >
                     <div class="flex items-center border-b py-3">
-                        <a class="fas fa-folder-open"></a>
+                        <icon-doc-detail theme="outline" size="18" fill="#333" />
                         <span class="text-xs text-gray-600 ml-2">文档资料</span>
                     </div>
                     <div class="flex items-center border-b py-3">
-                        <a class="fas fa-home"></a>
+                        <icon-home-two theme="outline" size="18" fill="#333" />
                         <span class="text-xs text-gray-600 ml-2">网站首页</span>
                     </div>
                     <div class="flex items-center border-b py-3" @click="utils.user.logout()">
-                        <a class="fas fa-sign-out-alt"></a>
+                        <icon-logout theme="outline" size="18" fill="#333" />
                         <span class="text-xs text-gray-600 ml-2">退出登录</span>
                     </div>
                 </section>
