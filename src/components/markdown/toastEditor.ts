@@ -1,23 +1,25 @@
 import uploadApi from '@/apis/uploadApi'
+import Editor from '@toast-ui/editor'
+import '@toast-ui/editor/dist/toastui-editor.css'
 export default class {
-    editor: toastui.Editor
+    editor: Editor
     isFullscreen: boolean = false
 
     /**
      * @description markdown
      * @param el HTMLElement
-     * @param	initialEditType 风格
+     * @param	initialEditType 编辑器风格
      * @param height 高度
      * @param initialValue 初始值
      */
     constructor(el: string, initialValue: string, public height: string) {
-        this.editor = new toastui.Editor({
-            el: document.querySelector(el),
+        this.editor = new Editor({
+            el: document.querySelector(el)!,
             initialEditType: 'markdown',
             previewStyle: 'vertical',
             height: height,
             initialValue: initialValue,
-            toolbarItems: this.toolbar(),
+            toolbarItems: this.toolbar() as [],
         })
         this.ImageHook()
     }
@@ -36,8 +38,8 @@ export default class {
             [
                 {
                     el: this.fullscreen(),
-                    command: 'bold',
-                    tooltip: 'Custom Bold',
+                    command: 'fullscreen',
+                    tooltip: 'fullscreen',
                 },
             ],
         ]

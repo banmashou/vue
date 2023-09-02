@@ -28,8 +28,6 @@ nextTick(() => {
 </template>
 
 <style lang="scss">
-@import 'https://uicdn.toast.com/editor/latest/toastui-editor.min.css';
-
 #editor {
     @apply bg-white;
     .toastui-editor-mode-switch {
