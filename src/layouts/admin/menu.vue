@@ -94,6 +94,9 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
                     }
                     span {
                         @apply hidden;
+                        &.i-icon {
+                            @apply block mr-0;
+                        }
                     }
                 }
                 .container {
@@ -106,6 +109,9 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
                                 }
                                 span {
                                     @apply hidden;
+                                    &.i-icon {
+                                        @apply block mr-0;
+                                    }
                                 }
                                 &:nth-of-type(2) {
                                     @apply hidden;
@@ -115,6 +121,9 @@ watch(route, () => menuService.setCurrentMenu(route), { immediate: true })
                         &:hover {
                             dd {
                                 @apply block absolute left-full top-[0px] w-[200px] bg-gray-700;
+                                div {
+                                    @apply m-0 rounded-none;
+                                }
                             }
                         }
                     }

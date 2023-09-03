@@ -21,9 +21,9 @@ document.addEventListener('fullscreenchange', () => {
 <template>
     <div class="bg-white p-3 px-5 flex justify-between items-center">
         <div class="flex items-center">
-            <div @click="menuSerivce.toggleState">
-                <i class="fas fa-align-right mr-2 cursor-pointer" v-if="menuSerivce.close.value"></i>
-                <i class="fas fa-align-left mr-2 cursor-pointer" v-else></i>
+            <div @click="menuSerivce.toggleState" class="mr-2 cursor-pointer">
+                <icon-indent-right theme="outline" size="24" fill="#333" v-if="menuSerivce.close.value" />
+                <icon-indent-left theme="outline" size="24" fill="#333" v-else />
             </div>
             <Breadcrumb class="hidden md:block" />
         </div>
