@@ -15,10 +15,6 @@ export default ({ command, mode }: ConfigEnv) => {
         resolve: {
             alias,
         },
-        server: {
-            host: '127.0.0.1',
-            port: 3000,
-        },
         build: {
             rollupOptions: {
                 emptyOutDir: true,
@@ -28,6 +24,20 @@ export default ({ command, mode }: ConfigEnv) => {
                             return id.toString().split('node_modules/')[1].split('/')[0].toString()
                         }
                     },
+                },
+            },
+        },
+        server: {
+            host: '127.0.0.1',
+            port: 3000,
+            proxy: {
+                '/api': {
+                    //将/api访问转换为target
+                    target: env.VITE_API_URL,
+                    //跨域请求携带cookie
+                    changeOrigin: true,
+                    //url 重写删除`/api`
+                    rewrite: (path: string) => path.replace(/^\/api/, ''),
                 },
             },
         },

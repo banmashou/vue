@@ -8,7 +8,7 @@ export default [
             return {
                 code: 200,
                 message: '请求成功',
-                type: 'success',
+                status: 'success',
                 data: new Array(10).fill('').map((_article, index) => {
                     return {
                         id: index + 1,
