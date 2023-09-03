@@ -6,6 +6,7 @@ export default [
         response: () => {
             return {
                 code: 0,
+                errno: 0,
                 message: '上传成功',
                 status: 'success',
                 data: {
