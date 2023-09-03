@@ -23,8 +23,8 @@ class Guard {
      * @memberof Guard
      */
     private async beforeEach(to: RouteLocationNormalized, from: RouteLocationNormalized) {
-        if (this.isLogin(to) === false) return { name: 'login' }
-        if (this.isGuest(to) === false) return from
+        if (to.meta.auth && !this.token()) return { name: 'login' }
+        if (to.meta.guest && this.token()) return from
     }
 
     /**
@@ -35,37 +35,6 @@ class Guard {
      */
     private token(): string | null {
         return utils.store.get(CacheEnum.TOKEY_NAME)
-    }
-
-    /**
-     * @description 游客
-     *
-     * @private
-     * @param {RouteLocationNormalized} route
-     * @param {*} token
-     * @return {*}
-     * @memberof Guard
-     */
-    private isGuest(route: RouteLocationNormalized) {
-        return Boolean(!route.meta.guest || (route.meta.guest && !this.token()))
-    }
-
-    /**
-     * @description 登录用户访问
-     *
-     * @private
-     * @param {RouteLocationNormalized} route
-     * @param {*} token
-     * @return {*}
-     * @memberof Login
-     */
-    private isLogin(route: RouteLocationNormalized) {
-        const state = Boolean(!route.meta.auth || (route.meta.auth && this.token()))
-        // 缓存重定向路由
-        if (state === false) {
-            utils.store.set(CacheEnum.REDIRECT_ROUTE_NAME, route.name)
-        }
-        return state
     }
 }
 
