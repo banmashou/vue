@@ -14,4 +14,4 @@ Object.entries(import.meta.env as Record<string, any>).forEach(([key, value]) =>
     else if (value === 'undefined') env[key] = undefined
 })
 
-export default env as ViteEnv
+export default env as ImportMetaEnv

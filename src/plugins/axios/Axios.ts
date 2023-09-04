@@ -1,4 +1,5 @@
 import { CacheEnum } from '@/enum/cacheEnum'
+import router from '@/router'
 import store from '@/utils/store'
 import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios'
 
@@ -54,6 +55,12 @@ export default class Axios {
                 return response
             },
             (error) => {
+                switch (error.response.status) {
+                    case 401:
+                        store.remove(CacheEnum.TOKEY_NAME)
+                        router.push({ name: 'login' })
+                        break
+                }
                 return Promise.reject(error)
             },
         )
