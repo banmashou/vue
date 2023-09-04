@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AnimateList: typeof import('./../src/components/animateList.vue')['default']
     BmButton: typeof import('./../src/components/bm/button.vue')['default']
+    BmError: typeof import('./../src/components/bm/error.vue')['default']
     BmInput: typeof import('./../src/components/bm/input.vue')['default']
     BmLink: typeof import('./../src/components/bm/link.vue')['default']
     Breadcrumb: typeof import('./../src/components/breadcrumb.vue')['default']

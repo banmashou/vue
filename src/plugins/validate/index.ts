@@ -14,6 +14,12 @@ Object.keys(rules).forEach((key) => {
     veeValidate.defineRule(key, rules[key])
 })
 
-const modules = { yup, ...veeValidate }
+/**
+ * @description VeeValidate 注册一组表单字段
+ * @param {string[]} fields
+ */
+const useFields = (fields: string[]) => {
+    fields.forEach((field) => veeValidate.useField(field))
+}
 
-export default modules
+export default { yup, ...veeValidate, useFields }
